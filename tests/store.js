@@ -23,4 +23,4 @@ export const reducer = (state=[], action) => {
 	}
 }
 
-export const combinedReducers = combineReducers({ app: reducer });
+export const reducers = combineReducers({ app: reducer });
