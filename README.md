@@ -6,11 +6,11 @@
 
 Describe redux-session-manager here.
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+[build-badge]: https://img.shields.io/travis/ssilve1989/redux-session-manager/master.png?style=flat-square
+[build]: https://travis-ci.org/ssilve1989/redux-session-manager
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+[npm-badge]: https://img.shields.io/npm/v/redux-session-manager.png?style=flat-square
+[npm]: https://www.npmjs.org/package/redux-session-manager
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+[coveralls-badge]: https://img.shields.io/coveralls/ssilve1989/redux-session-manager/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/ssilve1989/redux-session-manager
