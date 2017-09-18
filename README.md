@@ -13,6 +13,7 @@ npm i -S redux-session-manager
 Create a persistent store by enhancing createStore
 ```javascript
 import persistState from 'redux-session-manager';
+import { createStore, compose } from 'redux';
 const createPersistentStore = compose(persistState(options))(createStore);
 // Pass along the same arguments you would have to createStore
 const store = createPersistentStore(reducers, preloadedState, enhancers);
