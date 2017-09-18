@@ -15,14 +15,15 @@
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server",
-    "cz" : "git cz",
+    "precz": "eslint --fix src && git add -u",
+    "cz": "git cz",
     "prerelease": "npm run build",
     "release:beta": "npm run release -- --prerelease beta",
     "release": "standard-version"
   },
-  "config"     : {
-    "commitizen" : {
-      "path" : "cz-conventional-changelog"
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
     }
   },
   "dependencies": {},
@@ -36,6 +37,7 @@
     "mock-local-storage": "1.0.5",
     "nwb": "0.18.x",
     "redux": "3.7.2",
+    "redux-immutable": "4.0.0",
     "standard-version": "4.2.0"
   },
   "author": "Steven Silvestri <steven.m.silvestri@gmail.com> (https://ssilve1989.github.io/)",
