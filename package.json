@@ -17,6 +17,7 @@
     "test:watch": "nwb test --server",
     "precz": "eslint --fix src && git add -u",
     "cz": "git cz",
+    "prepublish" : "npm run build",
     "prerelease": "npm run build",
     "release:beta": "npm run release -- --prerelease beta",
     "release": "standard-version"

@@ -54,7 +54,7 @@ export function cleanse(state, exclude = []) {
 const persistState = options => createStore => (reducers, initialState={}, ...rest) => {
 	let persistedState, finalState
 	try {
-		persistedState = JSON.parse(sessionStorage.getItem(options.name));
+		persistedState = JSON.parse(sessionStorage.getItem(options.name))
 		finalState     = Object.assign({}, initialState, persistedState)
 	} catch(e) {
 		console.warn('Unable to retrieve state from session storage', e)

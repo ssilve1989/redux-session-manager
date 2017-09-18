@@ -36,8 +36,8 @@ const persistState = options => createStore => (reducers, initialState=Immutable
 	let persistedState
 
 	try {
-		persistedState = Immutable.fromJS(JSON.parse(sessionStorage.getItem(options.name)));
-		initialState = initialState.merge(persistedState);
+		persistedState = Immutable.fromJS(JSON.parse(sessionStorage.getItem(options.name)))
+		initialState = initialState.merge(persistedState)
 	} catch(e) {
 		console.warn('Unable to retrieve state from session storage', e)
 	}
