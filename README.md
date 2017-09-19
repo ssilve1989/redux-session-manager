@@ -19,6 +19,12 @@ const createPersistentStore = compose(persistState(options))(createStore);
 const store = createPersistentStore(reducers, preloadedState, enhancers);
 ```
 
+## ImmutableJS
+If you are using ImmutableJS via `redux-immutable` for example, just change the import to
+```javascript
+import persistState from 'redux-session-manager/lib/immutable';
+```
+
 ## Options
 | Property | Type | Required? | Description |
 |:---|:---|:---|:---

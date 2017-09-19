@@ -1,7 +1,7 @@
 {
   "name": "redux-session-manager",
   "version": "1.0.0",
-  "description": "Describe redux-session-manager here",
+  "description": "Persistent Redux Store using browser session storage",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -17,7 +17,6 @@
     "test:watch": "nwb test --server",
     "precz": "eslint --fix src && git add -u",
     "cz": "git cz",
-    "prepublish": "npm run build",
     "prerelease": "npm run build",
     "release:beta": "npm run release -- --prerelease beta",
     "release": "standard-version"
@@ -47,5 +46,15 @@
   "repository": "https://github.com/ssilve1989/redux-session-manager",
   "bugs": {
     "url": "https://github.com/ssilve1989/redux-session-manager/issues"
-  }
+  },
+  "keywords": [
+    "redux",
+    "state management",
+    "session",
+    "session storage",
+    "redux storage",
+    "persistent state",
+    "redux state",
+    "serialize"
+  ]
 }
