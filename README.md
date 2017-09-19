@@ -28,11 +28,11 @@ exclude | array[string\|array] | no | An array containing either a string repres
 ## Serialized only parts of State
 Use the exclude option to specify which properties you do not want to serialize to the store
 
-[build-badge]: https://img.shields.io/travis/ssilve1989/redux-session-manager/master.png?style=flat-square
+[build-badge]: https://img.shields.io/travis/ssilve1989/redux-session-manager.svg
 [build]: https://travis-ci.org/ssilve1989/redux-session-manager
 
-[npm-badge]: https://img.shields.io/npm/v/redux-session-manager.png?style=flat-square
+[npm-badge]: https://img.shields.io/npm/v/redux-session-manager.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/redux-session-manager
 
-[coveralls-badge]: https://img.shields.io/coveralls/ssilve1989/redux-session-manager/master.png?style=flat-square
+[coveralls-badge]: https://img.shields.io/coveralls/ssilve1989/redux-session-manager/master.svg?style=flat-square
 [coveralls]: https://coveralls.io/github/ssilve1989/redux-session-manager
