@@ -16,7 +16,16 @@ import persistState from 'redux-session-manager';
 import { createStore, compose } from 'redux';
 const createPersistentStore = compose(persistState(options))(createStore);
 // Pass along the same arguments you would have to createStore
-const store = createPersistentStore(reducers, preloadedState, enhancers);
+const store = createPersistentStore(reducers, preloadedState);
+```
+
+## Applying enhancers
+To apply enhancers, like applyMiddlware, pass it to the left of persistState in compose
+```javascript
+const persistentStoreWithMiddleware = compose(
+	applyMiddleware(...middlware),
+	persistState(options)
+)(createStore)
 ```
 
 ## ImmutableJS
@@ -33,6 +42,27 @@ exclude | array[string\|array] | no | An array containing either a string repres
 
 ## Excluding parts of state
 Use the exclude option to specify which properties you do not want to serialize to the store
+
+# Example
+Here is an example using Redux Dev Tools Extension, redux-thunk, redux-logger;
+```javascript
+import persistState from 'redux-session-manager';
+import { compose, createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import reducers from './reducers';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware = [ thunk, logger ];
+const createPersistentStoreWithMiddleware = composeEnhancers(
+	applyMiddleware(...middleware),
+	persistState({
+	    name: "sampleStore"
+	})
+)(createStore);
+
+const store = createPersistentStoreWithMiddleware(reducers, /* preloadedState */);
+```
 
 [build-badge]: https://img.shields.io/travis/ssilve1989/redux-session-manager.svg
 [build]: https://travis-ci.org/ssilve1989/redux-session-manager

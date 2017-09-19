@@ -1,7 +1,7 @@
 import expect from 'expect'
 import persistState, { cleanse, deleteInPath } from 'src/index'
 import { reducers, sampleState } from './store'
-import { compose, createStore } from 'redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 
 describe('Plain Object', () => {
 	describe('deleteInPath', () => {
@@ -61,9 +61,9 @@ describe('Plain Object', () => {
 		it('excludes part of state', () => {
 			const createPersistentStore = compose(persistState({ name: 'Test', exclude: ['app'] }))(createStore)
 			const store = createPersistentStore(reducers)
-			store.dispatch({ type: 'SAMPLE_ACTION', payload: 2 });
-			expect(store.getState().app).toEqual([ 2 ]);
-			expect(JSON.parse(sessionStorage.getItem('app'))).toNotExist();
+			store.dispatch({ type: 'SAMPLE_ACTION', payload: 2 })
+			expect(store.getState().app).toEqual([ 2 ])
+			expect(JSON.parse(sessionStorage.getItem('app'))).toNotExist()
 
 		})
 
@@ -71,6 +71,21 @@ describe('Plain Object', () => {
 			sessionStorage.setItem('Test', JSON.stringify({ app: [ 4 ]}))
 			const store = createPersistentStore(reducers)
 			expect(store.getState()).toEqual({ app : [ 4 ]})
+		})
+
+		it('works without providing a preloadedState, but providing enhancers', () => {
+			const dummyMiddlware = expect.createSpy().andCall(() => next => action => next(action));
+			const middleware = [ dummyMiddlware ]
+
+			const createPersistentStoreWithMiddleware = compose(
+				applyMiddleware(...middleware),
+				persistState({ name: 'Test' })
+			)(createStore);
+
+			const store = createPersistentStoreWithMiddleware(reducers)
+			store.dispatch({ type: 'TEST' })
+			expect(store.getState()).toEqual({ app : [] })
+			expect(dummyMiddlware.calls.length).toEqual(1);
 		})
 	})
 })

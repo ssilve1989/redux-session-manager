@@ -2,8 +2,8 @@ import expect from 'expect'
 import Immutable from 'immutable'
 import { sampleState } from './store'
 import { cleanse } from 'src/immutable'
-import { compose, createStore } from 'redux'
-import { combineReducers } from 'redux-immutable';
+import { applyMiddleware, compose, createStore } from 'redux'
+import { combineReducers } from 'redux-immutable'
 import persistState from '../src/immutable'
 
 describe('Immutable State', () => {
@@ -33,41 +33,54 @@ describe('Immutable State', () => {
 				}
 			})
 		})
-	});
+	})
 
 	describe('Store', () => {
 		const createPersistentStore = compose(persistState({ name: 'TestImmutable' }))(createStore)
 		const reducers = combineReducers({
 			app: (state = Immutable.List(), action) => {
 				switch(action.type) {
-					case 'SAMPLE' :
-						return state.push(action.payload);
-					default:
-						return state;
+				case 'SAMPLE' :
+					return state.push(action.payload)
+				default:
+					return state
 				}
 			}
-		});
+		})
 		beforeEach(() => {
-			sessionStorage.clear();
-		});
+			sessionStorage.clear()
+		})
 
 		it('serializes the correct state', () => {
 			const store = createPersistentStore(reducers)
 
-			store.dispatch({ type: 'SAMPLE', payload: 2 });
+			store.dispatch({ type: 'SAMPLE', payload: 2 })
 
-			expect(store.getState().get('app').toJS()).toEqual([ 2 ]);
+			expect(store.getState().get('app').toJS()).toEqual([ 2 ])
 			expect(JSON.parse(sessionStorage.getItem('TestImmutable'))).toEqual({
 				app: [ 2 ]
-			});
-		});
+			})
+		})
 
 		it('deserializes the correct state', () => {
-			const preloadedState = Immutable.Map({ app : [ 4 ]});
-			sessionStorage.setItem('TestImmutable', JSON.stringify(preloadedState));
-			const store = createPersistentStore(reducers);
+			const preloadedState = Immutable.Map({ app : [ 4 ]})
+			sessionStorage.setItem('TestImmutable', JSON.stringify(preloadedState))
+			const store = createPersistentStore(reducers)
 
-			expect(store.getState().toJS()).toEqual(preloadedState.toJS());
-		});
-	});
-});
+			expect(store.getState().toJS()).toEqual(preloadedState.toJS())
+		})
+
+		it('works without providing a preloaded state, but providing enhancers', () => {
+			const dummyMiddleware = expect.createSpy().andCall(() => next => action => next(action))
+			const middleware = [ dummyMiddleware ];
+			const createStoreWithMiddleware = compose(
+				applyMiddleware(...middleware),
+				persistState({ name : 'TestImmutable' })
+			)(createStore)
+
+			const store = createStoreWithMiddleware(reducers)
+			expect(store.getState().toJS()).toEqual({ app : [] });
+			expect(dummyMiddleware.calls.length).toEqual(1);
+		})
+	})
+})

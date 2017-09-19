@@ -32,7 +32,7 @@ export function cleanse(state, exclude = []) {
 	})
 }
 
-const persistState = options => createStore => (reducers, initialState=Immutable.Map(), ...rest) => {
+const persistState = options => createStore => (reducers, initialState=Immutable.Map()) => {
 	let persistedState
 
 	try {
@@ -42,7 +42,7 @@ const persistState = options => createStore => (reducers, initialState=Immutable
 		console.warn('Unable to retrieve state from session storage', e)
 	}
 
-	const store = createStore(reducers, initialState, ...rest)
+	const store = createStore(reducers, initialState)
 	store.subscribe(() => {
 		const state = cleanse(store.getState(), options.exclude)
 		try {
