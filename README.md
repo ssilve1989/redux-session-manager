@@ -25,7 +25,7 @@ const store = createPersistentStore(reducers, preloadedState, enhancers);
 name | string | yes | This will be the key in sessionStorage for the serialized state |
 exclude | array[string\|array] | no | An array containing either a string representing the reducer to exclude, or an array of [reducerName, keyPaths] where keyPaths can be either a string for a direct property of the reducer, or an array representing the keyPath to the property to be excluded.
 
-## Serialized only parts of State
+## Excluding parts of state
 Use the exclude option to specify which properties you do not want to serialize to the store
 
 [build-badge]: https://img.shields.io/travis/ssilve1989/redux-session-manager.svg
