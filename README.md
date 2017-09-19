@@ -10,7 +10,7 @@ npm i -S redux-session-manager
 ```
 
 # Usage
-Create a persistent store by enhancing createStore
+Create a persistent store by enchancing createStore
 ```javascript
 import persistState from 'redux-session-manager';
 import { createStore, compose } from 'redux';
