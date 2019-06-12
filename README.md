@@ -1,5 +1,7 @@
 # redux-session-manager
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ssilve1989/redux-session-manager.svg)](https://greenkeeper.io/)
+
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
