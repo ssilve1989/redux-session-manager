@@ -34,7 +34,7 @@
     "eslint": "5.16.0",
     "husky": "2.7.0",
     "immutable": "4.0.0-rc.12",
-    "mock-local-storage": "1.1.8",
+    "mock-local-storage": "1.1.10",
     "nwb": "~0.23.0",
     "redux": "4.0.1",
     "redux-immutable": "4.0.0",
